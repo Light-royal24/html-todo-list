@@ -1,50 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <title>Todo list</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="index.css" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Delicious+Handrawn&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Delicious+Handrawn&display=swap"
+      rel="stylesheet"
+    />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation&display=swap" rel="stylesheet">
-</head>
-<body>
-    <!-- Main container -->
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- main container -->
     <div class="main-container">
-
-
-        <!-- Todo list -->
-        <div class="todo-list" id="list">
-            <input
-                type="text" 
-                name="addTodo" 
-                id="add" 
-                placeholder="start typing . . ."
-            />
-            <!-- <button id="addItem">ADD</button> -->
-
-            <ion-icon name="heart" style="color: white"></ion-icon>
-            <div id="list-items">
-                <!-- <div class="list-item">
-                        <div>
-                            <input type="checkbox" />
-                            <span>
-                                Do a very important task
-                            </span>
-                        </div>
-                        <button id="removeItem">X</button>
-                    </div> -->
+      <!-- Todo list -->
+      <div class="todo-list" id="list">
+        <!-- list item already styled -->
+        <div class="list-item">
+          <!-- form for adding Todo -->
+          <form id="add-todo" autocomplete="off">
+            <!-- div to control the size of the btn and the input field -->
+            <div class="add-todo">
+              <!-- the input field -->
+              <input type="text" id="add" placeholder="start typing . . ." />
+              <!-- the add btn -->
+              <button id="addItem">Add</button>
             </div>
+          </form>
         </div>
+
+        <!-- list items for the todo listed -->
+        <div id="list-items">
+          <!-- list item already styled -->
+          <div class="list-item">
+            <!-- the white icon -->
+            <ion-icon name="heart" id="img" style="color: white"></ion-icon>
+            <!-- ul for our todo -->
+            <ul id="myTodo">
+              <!-- 1st li -->
+              <li class="checked">
+                <!--first child the text -->
+                <span class="text">learn HTML</span>
+                <!-- last child the remove btn -->
+                <span class="close">x</span>
+              </li>
+              <!-- 2nd li -->
+              <li>
+                <!-- 1st child the text -->
+                <span class="text">learn CSS</span>
+                <!-- last child the btn -->
+                <span class="close">x</span>
+              </li>
+              <!-- 3rd li -->
+              <li>
+                <!-- 1st child the text -->
+                <span class="text">learn JAVASCRIPT</span>
+                <!-- last child the close btn -->
+                <span class="close">x</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
     <script src="./index.js"></script>
-</body>
+  </body>
 </html>

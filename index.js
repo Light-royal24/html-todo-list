@@ -1,138 +1,69 @@
-// Add a new task to the todos list
+const list = document.querySelector(".list-item ul");
 
-const todos = [];
+// de3lete todo
 
-// Store the input element in a variable
-const inputElement = document.querySelector('#add');
+list.addEventListener("click", (e) => {
+  if (e.target.className === "close") {
+    const li = e.target.parentNode;
+    list.removeChild(li);
+  }
+});
 
-//create a function that will delete todo from todos
-function removeTodoFromList(id) {
-  // remove the todo form the list
-  const filteredTodos = todos.filter(todo => todo.id !== id)
+list.addEventListener("click", (e) => {
+  if (e.target.tagName === "LI") {
+    e.target.classList.toggle("checked");
+  }
+});
 
-  displayTodos(filteredTodos)
-}
+list.addEventListener("click", (e) => {
+  if (e.target.className === "text") {
+    const li = e.target.parentNode;
+    li.classList.toggle("checked");
+  }
+});
 
-// Mark as completed
-function checkTodo(id){
-  const position = todos.findIndex(todo => todo.id === id)
-  const checkboxButton = document.getElementById('check-button-'+ id)
+const addTodo = document.querySelector("#add-todo");
 
-  const todo = todos[position]
+// console.log(addTodo);
 
-  // If todo is not completed
-  if(!todo.completed) {
-    // Change icon to check icon
-    checkboxButton.innerHTML = '<ion-icon name="checkbox-outline" size="small"></ion-icon>';
-    
-    // Change the todo.completed to true
-    todo.completed = true;
+addTodo.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  // get the input field
+  const input = document.querySelector("#add");
+  // get the value in theinput field
+  const inputValue = input.value;
+  // console.log(inputValue);
+
+  // create new element
+  // console.log(input);
+  const li = document.createElement("LI");
+  // console.log(li);
+  const span = document.createElement("span");
+  span.className = "text";
+  // console.log(span);
+  const removeBtn = document.createElement("span");
+  removeBtn.className = "close";
+  // console.log(removeBtn);
+  // append the span created to the li
+  li.appendChild(span);
+  // append the removeBtn created to li
+  li.appendChild(removeBtn);
+
+  // if input field is empty
+  if (inputValue.trim() == "") {
+    // alert pls type in some text
+    alert("pls type in some text");
   } else {
-    // Change icon to square
-    checkboxButton.innerHTML = '<ion-icon name="square-outline" size="small"></ion-icon>';
-    todo.completed = false;
+    // else append li to the list
+    list.appendChild(li);
   }
-}
 
-// Display all todos in todos list
-function displayTodos(todos) {
+  // span innerText should be === input field value
+  span.innerText = inputValue;
+  // removeBtn value should be == x
+  removeBtn.innerText = "x";
 
-  // Get the element to display the todos in
-  const listItems = document.getElementById("list-items");
-  
-  // Clear the todos that have been displayed
-  listItems.innerHTML = "";
-
-  // Loop through todos list
-  todos.forEach(todo => {
-    // For each todo
-    // Create a div with a class of list-item
-    const listItemDiv = document.createElement('div')
-    listItemDiv.classList.add('list-item');
-    
-    if (todo.completed) {
-      listItemDiv.classList.add('completed');
-    }
-    
-    // Put a div inside the listItemDiv
-    const innerDiv = document.createElement('div')
-    listItemDiv.appendChild(innerDiv);
-    
-    // Put an input with a type of checkbox inside the innerDiv
-    const checkButton = document.createElement('button')
-    checkButton.setAttribute('id', `check-button-${todo.id}`)
-    checkButton.innerHTML = '<ion-icon name="square-outline" size="small"></ion-icon>'
-    
-    if (todo.completed) {
-      checkButton.innerHTML = '<ion-icon name="checkbox-outline" size="small"></ion-icon>'
-    }
-
-    innerDiv.appendChild(checkButton)
-
-    checkButton.addEventListener('click', () => {
-      checkTodo(todo.id)
-
-      if (todo.completed) {
-        listItemDiv.classList.add("completed")
-      } else {
-        listItemDiv.classList.remove("completed")
-      }
-    })
-    
-    // Put span with todo.text inside
-    const todoText = document.createElement('span')
-    todoText.innerText = todo.text;
-
-    innerDiv.appendChild(todoText);
-
-    // Put button inside listItemDiv
-    const removeBtn = document.createElement('button')
-    removeBtn.innerHTML = "<ion-icon name='close-circle-outline'></ion-icon>"
-    
-    //add event listener for the delete button
-    removeBtn.addEventListener('click', () => {
-      // call the function you created
-      removeTodoFromList(todo.id)
-    })
-
-    // Append the listItemDiv inside listItemsDiv
-    listItemDiv.appendChild(removeBtn);
-   
-    // Append each todo to the bottom of the listItems
-    listItems.appendChild(listItemDiv);
-
-  });
-  
-}
-
-// Event listener to add new todo from input
-inputElement.addEventListener('keyup', function(e) {
-
-  // if the key code is not 13 dont run this function
-  if (e.keyCode === 13) {
-    // Make sure the text is not empty
-    
-    // Create a new object with the text of the input and completed as false
-    const text = inputElement.value;
-    
-    // Dont add empty texts
-    if (text === '') return
-
-    const newObject = {
-      text: text,
-      completed: false,
-      id: todos.length + 1
-    };
-
-    // Add this new todo object to the list of todos
-    todos.push(newObject);
-    
-    // clear the input field
-    inputElement.value = "";
-    
-    //display display todos
-    displayTodos(todos);
-  }
-})
-
-displayTodos(todos)
+  // clear the input field
+  input.value = "";
+});
