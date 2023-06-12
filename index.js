@@ -45,6 +45,7 @@ addTodo.addEventListener("submit", (e) => {
   if (inputValue.trim() == "") {
     // alert pls type in some text
     alert("pls type in some text");
+    return;
   }
 
   // create new element
