@@ -1,11 +1,17 @@
 const list = document.querySelector(".list-item ul");
 
-// de3lete todo
-
+// Delete todo
 list.addEventListener("click", (e) => {
   if (e.target.className === "close") {
-    const li = e.target.parentNode;
-    list.removeChild(li);
+    const todoID = e.target.dataset.id;
+
+    const allTodos = getSavedTodos();
+    const filteredTodos = allTodos.filter(function (todo) {
+      if (todo.id != todoID) return todo;
+    });
+
+    saveTodos(filteredTodos);
+    displayTodos();
   }
 });
 
@@ -31,39 +37,58 @@ addTodo.addEventListener("submit", (e) => {
 
   // get the input field
   const input = document.querySelector("#add");
+
   // get the value in theinput field
   const inputValue = input.value;
-  // console.log(inputValue);
-
-  // create new element
-  // console.log(input);
-  const li = document.createElement("LI");
-  // console.log(li);
-  const span = document.createElement("span");
-  span.className = "text";
-  // console.log(span);
-  const removeBtn = document.createElement("span");
-  removeBtn.className = "close";
-  // console.log(removeBtn);
-  // append the span created to the li
-  li.appendChild(span);
-  // append the removeBtn created to li
-  li.appendChild(removeBtn);
 
   // if input field is empty
   if (inputValue.trim() == "") {
     // alert pls type in some text
     alert("pls type in some text");
-  } else {
-    // else append li to the list
-    list.appendChild(li);
   }
+
+  // create new element
+  const li = document.createElement("LI");
+
+  const span = document.createElement("span");
+  span.className = "text";
+
+  const removeBtn = document.createElement("span");
+  removeBtn.className = "close";
+
+  // append the span created to the li
+  li.appendChild(span);
+  // append the removeBtn created to li
+  li.appendChild(removeBtn);
 
   // span innerText should be === input field value
   span.innerText = inputValue;
   // removeBtn value should be == x
   removeBtn.innerText = "x";
 
+  // else append li to the list
+  list.appendChild(li);
+
   // clear the input field
   input.value = "";
+
+  storeTodo(inputValue);
 });
+
+function storeTodo(todoText) {
+  const todos = getSavedTodos();
+
+  const newTodo = {
+    id: todos.length + 1,
+    text: todoText,
+    completed: false,
+  };
+
+  // Add new todo to our todos list
+  todos.push(newTodo);
+
+  saveTodos(todos);
+
+  // Run the displayTodos function to display all todos
+  displayTodos();
+}

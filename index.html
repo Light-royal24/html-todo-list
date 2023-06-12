@@ -31,6 +31,7 @@
             <div class="add-todo">
               <!-- the input field -->
               <input type="text" id="add" placeholder="start typing . . ." />
+
               <!-- the add btn -->
               <button id="addItem">Add</button>
             </div>
@@ -41,31 +42,13 @@
         <div id="list-items">
           <!-- list item already styled -->
           <div class="list-item">
-            <!-- the white icon -->
-            <ion-icon name="heart" id="img" style="color: white"></ion-icon>
-            <!-- ul for our todo -->
+            <!-- ul for our todos -->
             <ul id="myTodo">
               <!-- 1st li -->
-              <li class="checked">
-                <!--first child the text -->
+              <!-- <li class="checked">
                 <span class="text">learn HTML</span>
-                <!-- last child the remove btn -->
                 <span class="close">x</span>
-              </li>
-              <!-- 2nd li -->
-              <li>
-                <!-- 1st child the text -->
-                <span class="text">learn CSS</span>
-                <!-- last child the btn -->
-                <span class="close">x</span>
-              </li>
-              <!-- 3rd li -->
-              <li>
-                <!-- 1st child the text -->
-                <span class="text">learn JAVASCRIPT</span>
-                <!-- last child the close btn -->
-                <span class="close">x</span>
-              </li>
+              </li> -->
             </ul>
           </div>
         </div>
@@ -80,6 +63,8 @@
       nomodule
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
     ></script>
+
+    <script src="./load-todos.js"></script>
     <script src="./index.js"></script>
   </body>
 </html>
